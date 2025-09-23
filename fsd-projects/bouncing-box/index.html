@@ -49,7 +49,7 @@
         });
 
         // Every 50 milliseconds, call the update Function (see below)
-        setInterval(update, 50);
+        setInterval(update, 1000/40);
 
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
@@ -71,7 +71,7 @@
         // TODO 2 - Variable declarations
         var positionX = 0
         var points = 0;
-        var speed = 10
+        var speed = 10;
 
 
         /**
@@ -80,12 +80,15 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-        moveBoxTo(positionX)
+        moveBoxTo(positionX);
         positionX = positionX + speed;
-
-          
+        if (positionX > boardwidth - box.width()) {
+        speed = speed * -1;  
         }
-
+        if (positionX < 0) {
+          speed = speed * -1;
+         }
+        }
         /**
          * This Function will be called each time the box is clicked.
          * Each time it is called, it should perform each of the following actions:
@@ -94,10 +97,16 @@
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
-       positionX = 0;
-       points = points + 1
-       speed = speed + 2;
+       positionX = 1;
+       points = points + 1;
+       
+       if (speed > 0) {
+        speed = speed + 2;
+       } else {
+       speed = -speed + 2;
+       }
        changeBoxText(points);
+
         }
 
 
