@@ -1,11 +1,7 @@
-const { startTransition } = require("react");
-
 var init = function (window) {
     'use strict';
-    var 
-        draw = window.opspark.draw,
+    var draw = window.opspark.draw,
         physikz = window.opspark.racket.physikz,
-        
         app = window.opspark.makeApp(),
         canvas = app.canvas, 
         view = app.view,
@@ -13,7 +9,6 @@ var init = function (window) {
         
     
     window.opspark.makeGame = function() {
-        
         window.opspark.game = {};
         var game = window.opspark.game;
         
@@ -55,19 +50,14 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the position of each circle using physikz.updatePosition()
-            physikz.updatePosition(circles[0]);
-            physikz.updatePosition(circles[1]);
-            physikz.updatePosition(circles[2]);
-            physikz.updatePosition(circles[3]);
-            physikz.updatePosition(circles[4]);
+            
             // TODO 5 : Call game.checkCirclePosition() on your circles
-           game.checkCirclePosition(circles[0]);
-           game.checkCirclePosition(circles[1]);
-           game.checkCirclePosition(circles[2]);
-           game.checkCirclePosition(circles[3]);
-           game.checkCirclePosition(circles[4]);
-            // TODO 8 / TODO 9 : Iterate over the array
            
+            // TODO 8 / TODO 9 : Iterate over the array
+           for (var i = 0; i < circles.length; i++) {
+            physikz.updatePosition(circles[i]);
+            game.checkCirclePosition(circles[i]);
+           }
             
         }
     
