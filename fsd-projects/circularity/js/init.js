@@ -33,7 +33,7 @@ var init = function (window) {
         
 
         // TODO 7 : Use a loop to create multiple circles
-     for (var i = 1; i <= 20; i++) {
+     for (var i = 1; i <= 1000; i++) {
       drawCircle()
      }
 
