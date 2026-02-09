@@ -92,9 +92,7 @@ function checkForNewDirection(event) {
   perpendicular to the current direction
   */
 
-    if (snake.head.direction === "left") {
-  snake.head.column = snake.head.column - 1;
-   }
+    
     if (activeKey === KEY.UP || activeKey === 87) {
       // 87 = W
       snake.head.direction = "up";
@@ -128,7 +126,7 @@ function moveSnake() {
 
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
-   for (i = snake.body.length - 1; i > 0; i++) {
+   for (i = snake.body.length - 1; i > 0; i--) {
     var currentSnakeSquare = snake.body[i];
     var snakeSquareInFront = snake.body[i-1];
 
@@ -174,6 +172,10 @@ function hasHitWall() {
     
     HINT: What will the row and column of the snake's head be if this were the case?
   */
+ if (snake.head.row < 0) {return true}
+ if (snake.head.row > ROWS) {return true}
+ if (snake.head.column < 0) {return true}
+ if (snake.head.column > COLUMNS) {return true}
 
   return false;
 }
@@ -185,7 +187,7 @@ function hasCollidedWithApple() {
     
     HINT: Both the apple and the snake's head are aware of their own row and column
   */
-
+ if (snake.head.row === apple.row && snake.head.column === apple.column) {return true}
   return false;
 }
 
