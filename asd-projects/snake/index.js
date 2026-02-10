@@ -91,19 +91,22 @@ function checkForNewDirection(event) {
   BONUS: Only allow direction changes to take place if the new direction is
   perpendicular to the current direction
   */
-  
+    if (activeKey === KEY.LEFT && snake.head.direction !== "right") {
+      // 65 = A
+      snake.head.direction = "left";
+    }
     
-    if (activeKey === KEY.UP || activeKey === 87) {
+    if (activeKey === KEY.UP && snake.head.direction !== "down") {
       // 87 = W
       snake.head.direction = "up";
     }
 
-    if (activeKey === KEY.RIGHT || activeKey === 68) {
+    if (activeKey === KEY.RIGHT && snake.head.direction !== "left") {
       // 68 = D
       snake.head.direction = "right";
     }
 
-    if (activeKey === KEY.DOWN || activeKey === 83) {
+    if (activeKey === KEY.DOWN && snake.head.direction !== "up") {
       // 83 = S
       snake.head.direction = "down";
     }
@@ -348,6 +351,14 @@ function getRandomAvailablePosition() {
       not occupied by a snakeSquare in the snake's body. If it is then set 
       spaceIsAvailable to false so that a new position is generated.
     */
+   for (var i = 0; i < snake.body.length; i++) {
+    if (
+      snake.body[i].row === randomPosition.row &&
+      snake.body[i].column === randomPosition.column
+    ) {
+      spaceIsAvailable = false;
+    }
+   }
   }
 
   return randomPosition;
