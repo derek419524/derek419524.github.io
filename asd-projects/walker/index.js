@@ -24,8 +24,8 @@ function runProgram() {
 
   // Game Item Objects
   var walker = {
-    x: 0,
-    y: 0,
+    X: 0,
+    Y: 0,
     speedX: 0,
     speedY: 0,
   };
@@ -101,8 +101,8 @@ function runProgram() {
   }
 
  function wallCollision() {
- var bWidth = $("#board").width()
- var bHeight = $("#board").height()
+ var bWidth = $("#board").width() - 50
+ var bHeight = $("#board").height() - 50
  if (walker.X < 0) {walker.X = 0}
  if (walker.Y < 0) {walker.Y = 0}
  if (walker.X > bWidth) {walker.X = bWidth}
